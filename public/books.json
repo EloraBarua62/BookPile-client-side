@@ -1,0 +1,82 @@
+[
+    {
+        "name": "The Lord of the Rings",
+        "price": "$20",
+        "quantity": "5",
+        "supplier_name": "Jhonson D'costa",
+        "description": "The Lord of the Rings is an epic high-fantasy novel by English author and scholar J. R. R. Tolkien.",
+        "img": "https://i.ibb.co/Hgwj2n4/Lord-of-Rings.jpg"
+    },
+    {
+        "name": "The Da Vinci Code",
+        "price": "$25",
+        "quantity": "3",
+        "supplier_name": "Silvia Gomez",
+        "description": "The Da Vinci Code books necessarily tell the only truth. The novel is full of reinterpretations of commonly told stories, such as those of Jesus' life,the Da Vinci fresco The Last Supper.",
+        "img": "https://i.ibb.co/wMqN4jZ/vince-code-1.jpg"
+    },
+    {
+        "name": "Troy",
+        "price": "$16",
+        "quantity": "4",
+        "supplier_name": "Riya Hayat",
+        "description": "Troy is a young adult novel by Adèle Geras. It is based on events in The Iliad, incorporating original stories set in the heart of the city towards the end of the Trojan War.",
+        "img": "https://i.ibb.co/ZSCQxPP/Troy2.jpg"
+    },
+    {
+        "name": "A Brief History of Time",
+        "price": "$30",
+        "quantity": "8",
+        "supplier_name": "Tom Clerk",
+        "description": "A Brief History of Time: From the Big Bang to Black Holes is a book on theoretical cosmology by English physicist Stephen Hawking.",
+        "img": "https://i.ibb.co/gVwhqSh/Stephen-hokings.jpg"
+    },
+    {
+        "name": "The Diary of Anne Frank",
+        "price": "$20",
+        "quantity": "2",
+        "supplier_name": "Silvia Gomes",
+        "description": "The Diary of a Young Girl, also known as The Diary of Anne Frank, is a book of the writings from the Dutch-language diary kept by Anne Frank",
+        "img": "https://i.ibb.co/2qPZqg9/anna-frank.jpg"
+    },
+    {
+        "name": "N or M?",
+        "price": "$50",
+        "quantity": "10",
+        "supplier_name": "Willam Hok",
+        "description": "N or M? is a work of detective fiction by Agatha Christie first published in the US by Dodd, Mead and Company in 1941 and in the UK by the Collins Crime Club in November of the same year. ",
+        "img": "https://i.ibb.co/tz2gJQ8/N-or-M.jpg"
+    },
+    {
+        "name": "The Alchemist",
+        "price": "$33",
+        "quantity": "1",
+        "supplier_name": "Mick Golsalvense",
+        "description": "The most prominent theme in The Alchemist is the idea that each person has a “Personal Legend”—a type of ideal fate or destiny—and that each person can chose whether or not to pursue that legend.",
+        "img": "https://i.ibb.co/xJKtR9d/The-Alchemist.jpg"
+    },
+    {
+        "name": "Pride and Prejudice",
+        "price": "$27",
+        "quantity": "3",
+        "supplier_name": "Rohit Sharma",
+        "description": "The Pride of Jane Austen! The story is set in England in the late 18th century. Charles Bingley, a wealthy and charismatic single man, moves to the Netherfield estate",
+        "img": "https://i.ibb.co/9bPq6Dj/Pride-Prejudice.jpg"
+    },
+    {
+        "name": "Sherlock Holmes",
+        "price": "$18",
+        "quantity": "4",
+        "supplier_name": "Dina Pattle",
+        "description": "Sherlock Holmes is a fictional detective created by British author Sir Arthur Conan Doyle. Referring to himself as a 'consulting detective' in the stories",
+        "img": "https://i.ibb.co/h2jQ4k7/Sherlock.jpg"
+    },
+    {
+        "name": "Angels and Demons",
+        "price": "$28",
+        "quantity": "10",
+        "supplier_name": "Pritom Hasan",
+        "description": "Angels & Demons is a 2000 bestselling mystery-thriller novel written by American author Dan Brown and published by Pocket Books and then by Corgi Books. ",
+        "img": "https://i.ibb.co/fvJMtDb/angels-and-demons.jpg"
+    }
+]

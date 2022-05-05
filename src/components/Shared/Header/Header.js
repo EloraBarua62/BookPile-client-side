@@ -108,7 +108,7 @@ const Header = () => {
 
             {/* <!-- Mobile menu, show/hide based on menu state. --> */}
             <div className="sm:hidden" id="mobile-menu">
-                <div className={`px-2 pt-2 pb-3 space-y-1 bg-gray-500 absolute ${open ? 'top-15' : 'top-[-220px]'}`}>
+                <div className={`px-2 pt-2 pb-3 space-y-1 w-full bg-gray-500 absolute ${open ? 'top-15' : 'top-[-220px]'}`}>
                     {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                     <Link to='/' className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</Link>
 

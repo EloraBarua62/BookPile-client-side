@@ -1,17 +1,17 @@
 import React from 'react';
 import useBooks from '../../hooks/useBooks';
-import Book from '../Home/Book';
+import Book from './Book';
 
-const ManageInventory = () => {
+const HomeInventory = () => {
     const [books] = useBooks();
 
     // const homeBook = books.slice(0,6)
     return (
         <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-2'>
             {
-                books.map(book => <Book
-                    key={book._id}
-                    book={book}
+                books.slice(0, 6).map(book => <Book
+                key={book._id}
+                book={book}
                 >
                 </Book>)
             }
@@ -19,4 +19,4 @@ const ManageInventory = () => {
     );
 };
 
-export default ManageInventory;
+export default HomeInventory;
