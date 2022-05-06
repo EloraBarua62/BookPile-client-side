@@ -9,7 +9,9 @@ const GoogleAccount = () => {
     const navigate = useNavigate();
 
     if(user)
-    navigate('/')
+    {
+        navigate('/');
+    }
 
     return (
         <div>

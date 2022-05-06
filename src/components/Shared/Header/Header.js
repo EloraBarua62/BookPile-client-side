@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/solid'
 import './Header.css'
+import auth from '../../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
 
-    const [open , setOpen] = useState(false);
+    const [user, loading, error] = useAuthState(auth);
+
+    const [open, setOpen] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        signOut(auth);
+        navigate('/');
+    }
+
+
     return (
         // < !--This example requires Tailwind CSS v2.0 + -->
         <nav className="bg-gray-800">
@@ -46,7 +60,7 @@ const Header = () => {
                             <img className="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow"></img>
                         </div>
 
-                        
+
                         <div className="hidden sm:block sm:ml-6 ">
                             <div className="flex space-x-4">
                                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
@@ -58,12 +72,22 @@ const Header = () => {
 
                                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Add Books</a> */}
                                 <NavLink to='/' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</NavLink>
-                                <NavLink to='/inventory/:id' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Inventory</NavLink>
+                                {/* <NavLink to='/inventory/:id' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Inventory</NavLink> */}
                                 <NavLink to='/manage_inventory' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Manage Books</NavLink>
                                 <NavLink to='/add_inventory' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Add Books</NavLink>
                                 <NavLink to='/my_items' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My items</NavLink>
                                 <NavLink to='/blogs' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blogs</NavLink>
-                                <NavLink to='/signup' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign up</NavLink>
+
+                                {
+                                    user ?
+                                        <button onClick={handleSignOut} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign out</button>
+
+                                        :
+                                        <NavLink to='/login' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</NavLink>
+
+                                }
+
+
 
                             </div>
                         </div>

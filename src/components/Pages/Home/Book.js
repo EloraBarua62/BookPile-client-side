@@ -15,7 +15,7 @@ const Book = ({ book }) => {
 
     
     return (
-        <div className='w-72 flex flex-col border rounded-md border-solid border-1 hover:border-2 border-amber-700 hover:border-amber-900'>
+        <div className='w-72 flex flex-col border rounded-md border-solid border-8 bg-white border-amber-700 hover:border-white'>
             <img src={img} alt="" className='w-60 mx-auto mt-3'/>
             <div className='mx-3'>
                 <h1 className='font-bold text-2xl'>{book.name}</h1>

@@ -1,11 +1,27 @@
-import React from 'react';
+// import React, { useEffect, useState } from 'react';
 
-const MyItem = () => {
-    return (
-        <div>
-            <h1>MY items is here</h1>
-        </div>
-    );
-};
+// const MyItem = () => {
+//     const [myBook , setMyBook] = useState([]);
 
-export default MyItem;
+
+//     useEffect(()=>{
+
+//         const getMyBooks = () =>{
+//             const url = ``;
+//             fetch()
+//             .then(res => res.json())
+//             .then(data => setMyBook(data))
+//         }
+
+//         getMyBooks();
+//     },[])
+//     return (
+//         <div>
+//             {
+//                 myBook.map()
+//             }
+//         </div>
+//     );
+// };
+
+// export default MyItem;
