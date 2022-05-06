@@ -63,6 +63,8 @@ const Header = () => {
                                 <NavLink to='/add_inventory' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Add Books</NavLink>
                                 <NavLink to='/my_items' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My items</NavLink>
                                 <NavLink to='/blogs' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blogs</NavLink>
+                                <NavLink to='/signup' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign up</NavLink>
+
                             </div>
                         </div>
                     </div>
@@ -117,6 +119,7 @@ const Header = () => {
                     <Link to='/my_items' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Add books</Link>
 
                     <Link to='/blogs' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">My Items</Link>
+                    <Link to='/signup' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sign up</Link>
 
                     {/* <NavLink as={Link} to='/' className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</NavLink>
                     <NavLink as={Link} to='/inventory/:id' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Inventory</NavLink>
