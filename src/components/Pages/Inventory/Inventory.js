@@ -25,8 +25,8 @@ const Inventory = () => {
 
             console.log('Item decreased', newItem);
 
-            // const url = `http://localhost:5000/books/${id}`;
-            fetch(`http://localhost:5000/books/${id}`, {
+            // const url = `https://aqueous-forest-29360.herokuapp.com/books/${id}`;
+            fetch(`https://aqueous-forest-29360.herokuapp.com/books/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -40,7 +40,7 @@ const Inventory = () => {
                 })
         }
 
-        
+
     }
 
 
@@ -50,7 +50,7 @@ const Inventory = () => {
 
 
     const handleAdd = (id, number) => {
-        
+
         const bookNumber = parseInt(bookRef.current.value);
         let quantity = parseInt(number);
         console.log(typeof quantity);
@@ -63,8 +63,8 @@ const Inventory = () => {
 
         console.log('Item increased', newItem);
 
-        // const url = `http://localhost:5000/books/${id}`;
-        fetch(`http://localhost:5000/books/${id}`, {
+        // const url = `https://aqueous-forest-29360.herokuapp.com/books/${id}`;
+        fetch(`https://aqueous-forest-29360.herokuapp.com/books/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -78,7 +78,7 @@ const Inventory = () => {
                 window.location.reload();
             })
 
-        
+
 
     }
 

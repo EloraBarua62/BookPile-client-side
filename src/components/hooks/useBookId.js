@@ -5,8 +5,8 @@ const useBookId = id => {
     const [book, setBook] = useState({});
 
     useEffect(() => {
-        // const url = `http://localhost:5000/books/${id}`;
-        fetch(`http://localhost:5000/books/${id}`)
+        // const url = `https://aqueous-forest-29360.herokuapp.com/books/${id}`;
+        fetch(`https://aqueous-forest-29360.herokuapp.com/books/${id}`)
             .then(res => res.json())
             .then(data => setBook(data))
     }, [id]);

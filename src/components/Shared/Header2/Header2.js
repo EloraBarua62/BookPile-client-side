@@ -1,38 +1,39 @@
 import React from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import google from '../../images/Social/google.png';
 
-import img1 from '../../../images/img1.jpg';
-import img2 from '../../../images/img2.jpg';
-import img3 from '../../../images/img3.jpg';
-// import img4 from '../../../images/img4.avif';
-// import img5 from '../../../images/img5.webp';
+const SocialLogin = () => {
 
-//import './Banner.css';
-import { Link } from 'react-router-dom';
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
-const Banner = () => {
+    let errorElement;
+    const navigate = useNavigate();
+
+    if (loading) {
+        return <div className='text-center mt-10'>loading...</div>
+    }
+
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+    }
+
+    if (user) {
+        navigate('/home');
+    }
+
     return (
         <div>
-            <Carousel autoPlay infiniteLoop interval={5000} showThumbs={false}>
-                <div>
-                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img1} />
-                </div>
-                <div>
-                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img2} />
-                </div>
-                <div>
-                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img3} />
-                </div>
-                {/* <div>
-                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img4} />
-                </div>
-                <div>
-                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img5} />
-                </div> */}
-            </Carousel>
+            {errorElement}
+            <div className='flex justify-center mb-5 md:mb-0 mt-5'>
+
+                <button onClick={() => signInWithGoogle()} className="flex items-center  bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"> <img src={google} alt="" />
+                    <p className='mb-0 ml-5'>Google Sign In</p>
+                </button>
+            </div>
         </div>
     );
 };
 
-export default Banner;
+export default SocialLogin;
