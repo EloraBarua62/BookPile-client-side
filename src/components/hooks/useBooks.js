@@ -10,7 +10,7 @@ const useBooks = () => {
         .then(data => setBooks(data))
     },[])
 
-    return [books];
+    return [books,setBooks];
     
 }
 

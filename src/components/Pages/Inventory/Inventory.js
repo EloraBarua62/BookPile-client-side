@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useBookId from '../../hooks/useBookId';
 import './Inventory.css'
@@ -8,6 +8,12 @@ const Inventory = () => {
     const { bookId } = useParams();
 
     const [book] = useBookId(bookId);
+
+    const [addBooks, setAddBooks] = useState(false);
+
+
+    const bookRef = useRef('');
+
     // console.log(book);
 
     const handleDeliver = (id, number) => {
@@ -30,8 +36,50 @@ const Inventory = () => {
                 .then(response => response.json())
                 .then(data => {
                     alert('Your book will be delivered');
+                    window.location.reload();
                 })
         }
+
+        
+    }
+
+
+    const handleText = () => {
+        setAddBooks(true);
+    }
+
+
+    const handleAdd = (id, number) => {
+        
+        const bookNumber = parseInt(bookRef.current.value);
+        let quantity = parseInt(number);
+        console.log(typeof quantity);
+        console.log(typeof bookNumber);
+
+        quantity = quantity + bookNumber;
+        console.log(quantity);
+
+        const newItem = { quantity };
+
+        console.log('Item increased', newItem);
+
+        // const url = `http://localhost:5000/books/${id}`;
+        fetch(`http://localhost:5000/books/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newItem),
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert('New book will be added');
+                setAddBooks(false);
+                window.location.reload();
+            })
+
+        
+
     }
 
     return (
@@ -43,7 +91,22 @@ const Inventory = () => {
                 <h1 className='font-medium text-xl'>Price : {book.price}</h1>
                 <h1 className='font-medium text-base'>Quantity : {book.quantity}</h1>
 
-                <button onClick={() => { handleDeliver(book._id, book.quantity) }} type="button" class="mt-10 text-amber-700 hover:text-white border-4 border-amber-800 hover:bg-amber-900 focus:ring-4 focus:outline-none focus:ring-amber-300 font-large rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:border-amber-600 dark:text-amber-400 dark:hover:text-white dark:hover:bg-amber-600 dark:focus:ring-amber-800">Deliver</button>
+
+                <button onClick={() => { handleDeliver(book._id, book.quantity) }} type="button" class="bg-red-700 hover:bg-red-600 text-white m-5 px-5 py-3 rounded-lg text-xl font-bold">Deliver</button>
+
+                <button onClick={handleText} class="bg-green-700 hover:bg-green-600 text-white m-5 px-5 py-3 rounded-lg text-xl font-bold">Add</button>
+
+                {
+                    addBooks ?
+                        <div className='bg-green-700 w-80 h-40 mx-auto mt-5 pt-8 rounded-lg'>
+                            <input type="number" ref={bookRef} className='h-10 rounded-lg text-green-900 text-xl font-bold pl-3' />
+                            <br />
+                            <button onClick={() => { handleAdd(book._id, book.quantity) }} className='bg-green-900 m-5 px-5 py-2 rounded-lg text-xl font-bold'>Submit</button>
+
+                        </div>
+                        :
+                        ''
+                }
             </div>
         </div>
     );

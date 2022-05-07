@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init'
 import {TrashIcon} from '@heroicons/react/solid'
+import { toast, ToastContainer } from 'react-toastify';
 
 const MyItem = () => {
     const [user] = useAuthState(auth);
@@ -20,6 +21,22 @@ const MyItem = () => {
 
         getMyBooks();
     }, [user]);
+
+
+    const handleRemoveItem = id => {
+        const remove = window.confirm("Are you sure about deletion?")
+
+        if(remove)
+        {
+            fetch(`http://localhost:5000/books/${id}`,{
+                method:'DELETE'
+            })
+            .then(response => response.json())
+            .then(data =>{
+                toast('Deletion complete')
+            })
+        }
+    }
 
     return (
         <div className='mx-20 my-20'>
@@ -40,7 +57,7 @@ const MyItem = () => {
                         
                         </div>
                         <div className='table-cell border-b-8 border-slate-700'>
-                            <button className='text-white w-16 h-16'><TrashIcon></TrashIcon></button>
+                            <button onClick={()=>handleRemoveItem(myBook._id)} className='text-white w-16 h-16'><TrashIcon></TrashIcon></button>
                         </div>
                        
                     
@@ -48,6 +65,7 @@ const MyItem = () => {
                     }
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 };
