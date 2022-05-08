@@ -92,9 +92,21 @@ const Inventory = () => {
                 <h1 className='font-medium text-base'>Quantity : {book.quantity}</h1>
 
 
-                <button onClick={() => { handleDeliver(book._id, book.quantity) }} type="button" class="bg-red-700 hover:bg-red-600 text-white m-5 px-5 py-3 rounded-lg text-xl font-bold">Deliver</button>
+                {
+                    book.quantity > 0 ?
+                        <button onClick={() => { handleDeliver(book._id, book.quantity) }} type="button" class="bg-red-700 hover:bg-red-600 text-white m-5 px-5 py-3 rounded-lg text-xl font-bold">Deliver</button>
+                        :
+                        <div>
+                            <button type="button" class="text-red-600 mt-5 text-5xl font-bold" disabled>Sold out</button>
+                            <br />
+                        </div>
 
-                <button onClick={handleText} class="bg-green-700 hover:bg-green-600 text-white m-5 px-5 py-3 rounded-lg text-xl font-bold">Add</button>
+                }
+
+
+
+
+                <button onClick={handleText} class="bg-green-700 hover:bg-green-600 text-white m-5 px-5 py-3 rounded-lg text-xl font-bold">Restore</button>
 
                 {
                     addBooks ?

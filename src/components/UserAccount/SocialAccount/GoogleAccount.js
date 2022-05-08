@@ -19,13 +19,14 @@ const GoogleAccount = () => {
 
     if(user)
     {
-        navigate('/');
+        console.log(user)
+        // navigate('/');
     }
 
     return (
         <div>
             <button onClick={() => signInWithGoogle()}>
-                <img src={google} alt="" />
+                <img src={google} alt="" className='w-10 h-10 '/>
             </button>
             {errorElement}
         </div>

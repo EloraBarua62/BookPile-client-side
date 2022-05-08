@@ -13,11 +13,11 @@ const Header = () => {
 
     const [open, setOpen] = useState(false);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSignOut = () => {
         signOut(auth);
-        navigate('/');
+        // navigate('/');
     }
 
 
@@ -60,13 +60,13 @@ const Header = () => {
                             {/* <img className="block lg:hidden h-8 w-auto bg-white" src={image} alt="Workflow"></img> */}
                             
                             {/* <img className="hidden lg:block  h-8 w-auto bg-white" src={image} alt="Workflow"></img> */}
-                            <BookOpenIcon className='w-20 h-10 mr-4 text-white'></BookOpenIcon>
+                            <BookOpenIcon className='w-20 h-10 mr-4 text-white' to='/'></BookOpenIcon>
                             <h1 className='text-white text-3xl font-bold'>BookPile</h1>
                         </div>
 
 
-                        <div className="hidden sm:block sm:ml-6 ">
-                            <div className="flex space-x-4">
+                        <div className="hidden sm:block sm:ml-6">
+                            <div className="flex space-x-4 ">
                                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                                 {/* <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
 
@@ -81,15 +81,20 @@ const Header = () => {
                                 <NavLink to='/add_inventory' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Add Books</NavLink>
                                 <NavLink to='/my_items' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My items</NavLink>
                                 <NavLink to='/blogs' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blogs</NavLink>
+                                <NavLink to='/aboutus' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About us</NavLink>
 
                                
 
 
 
                             </div>
+                            {/* <div className="absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"> */}
+                            
                         </div>
+                        
                     </div>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+                    <div className="absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         {
                             user ?
                                 <button onClick={handleSignOut} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign out</button>
@@ -117,7 +122,7 @@ const Header = () => {
                                 </button>
                             </div> */}
 
-                            {/* <!--
+                        {/* <!--
                                 Dropdown menu, show/hide based on menu state.
 
                                 Entering: "transition ease-out duration-100"
@@ -127,7 +132,7 @@ const Header = () => {
                                 From: "transform opacity-100 scale-100"
                                 To: "transform opacity-0 scale-95"
                                         --> */}
-                            {/* <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                        {/* <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                                 {/* <!-- Active: "bg-gray-100", Not Active: "" --> 
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
@@ -135,22 +140,25 @@ const Header = () => {
                             </div> */}
                         {/* </div> */}
                     </div>
+                    
                 </div>
             </div>
 
 
             {/* <!-- Mobile menu, show/hide based on menu state. --> */}
             <div className="sm:hidden" id="mobile-menu">
-                <div className={`px-2 pt-2 pb-3 space-y-1 w-full bg-gray-500 absolute ${open ? 'top-15' : 'top-[-220px]'}`}>
+                <div className={`z-50 px-2 pt-2 pb-3 space-y-1 w-full bg-gray-500 absolute ${open ? 'top-15' : 'top-[-420px]'}`}>
                     {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                     <Link to='/' className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</Link>
 
-                    <Link to='/inventory/:id' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Inventory</Link>
+                    <Link to='/manage_inventory' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Manage Books</Link>
+                    <Link to='/add_inventory' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Inventory</Link>
 
                     <Link to='/my_items' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Add books</Link>
 
                     <Link to='/blogs' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">My Items</Link>
-                    <Link to='/signup' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sign up</Link>
+                    <Link to='/aboutus' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About us</Link>
+                    <Link to='/login' className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</Link>
 
                     {/* <NavLink as={Link} to='/' className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</NavLink>
                     <NavLink as={Link} to='/inventory/:id' className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Inventory</NavLink>

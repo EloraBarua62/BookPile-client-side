@@ -11,6 +11,8 @@ import Login from './components/UserAccount/Login/Login';
 import NotFound from './components/Shared/NotFound/NotFound';
 import Signup from './components/UserAccount/Signup/Signup';
 import RequireAuth from './components/Shared/RequireAuth/RequireAuth';
+import Footer from './components/Shared/Footer/Footer';
+import AboutUs from './components/Pages/AboutUs/AboutUs';
 
 function App() {
   return (
@@ -27,21 +29,26 @@ function App() {
         }></Route>
         <Route path='/manage_inventory' element={<ManageInventory></ManageInventory>}></Route>
         <Route path='/add_inventory' element={
-        <RequireAuth>
+          <RequireAuth>
             <AddInventory></AddInventory>
-        </RequireAuth>      
+          </RequireAuth>
         }></Route>
         <Route path='/my_items' element={
-        <RequireAuth>
+          <RequireAuth>
             <MyItem></MyItem>
-        </RequireAuth>
+          </RequireAuth>
         }></Route>
+
+        {/* <Route path='/my_items' element={<MyItem></MyItem>}></Route> */}
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='/aboutus' element={<AboutUs></AboutUs>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      {/* https://aqueous-forest-29360.herokuapp.com/ */}
 
+      <Footer></Footer>
     </div>
   );
 }

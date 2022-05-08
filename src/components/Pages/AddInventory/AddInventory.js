@@ -29,7 +29,7 @@ const AddInventory = () => {
 
     return (
 
-        <div className="w-1/2 h-4/5 bg-slate-900 mx-auto mt-10">
+        <div className="w-1/2 h-4/5 bg-slate-900 mx-auto mt-10 p-10">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" placeholder='Book name' className='w-3/5 h-10 m-3 rounded-lg pl-3' {...register("name")} />
                 <input type="text" placeholder='Price' className='w-3/5 h-10 m-3 rounded-lg pl-3' {...register("price")} />

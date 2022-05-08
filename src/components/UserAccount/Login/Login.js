@@ -5,13 +5,17 @@ import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import GoogleAccount from '../SocialAccount/GoogleAccount';
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../Shared/Loading/Loading';
+import axios from 'axios';
 
-const Signup = () => {
+const Login = () => {
 
-    const nameRef = useRef('');
     const emailRef = useRef('');
     const passRef = useRef('');
-    const conPassRef = useRef('');
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     let email;
     let password;
     let errorMessage;
@@ -25,21 +29,49 @@ const Signup = () => {
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
-    const [passwordError, setPasswordError] = useState('')
-
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
 
 
+    // Messages
+    if (error) {
+        errorMessage = <p className='text-red-600'>{error.message}</p>
+    }
 
-    const handleForm = event => {
-        event.preventDefault();
-        email = emailRef.current.value;
-        password = passRef.current.value;
-        signInWithEmailAndPassword(email, password)
+    if (user) {
+        navigate(from, { replace: true })
 
     }
+
+    if (loading || sending) {
+        return <Loading></Loading>
+    }
+
+
+
+
+    // Handle form
+    const handleForm = async event => {
+        event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passRef.current.value;
+
+        await signInWithEmailAndPassword(email, password);
+
+    }
+
+
+
+    // // Handle form
+    // const handleForm = async event => {
+    //     event.preventDefault();
+    //     const email = emailRef.current.value;
+    //     const password = passRef.current.value;
+
+    //     await signInWithEmailAndPassword(email, password);
+    //     const { data } = await axios.post('https://aqueous-forest-29360.herokuapp.com/login', { email });
+    //     // console.log(data);
+    //     localStorage.setItem('accessToken', data.accessToken);
+    //     navigate(from, { replace: true });
+    // }
 
 
     const handleResetPassword = async () => {
@@ -53,16 +85,8 @@ const Signup = () => {
         }
     }
 
-    if (error) {
-        errorMessage = <p className='text-red-600'>{error.message}</p>
-    }
 
-    if (user) {
-        navigate(from, { replace: true })
 
-    }
-
-   
 
     return (
         <div className="h-screen bg-cover bg-[url('https://img.freepik.com/free-photo/young-student-working-assignment_23-2149257248.jpg?w=740&t=st=1651814498~exp=1651815098~hmac=d49a39ef89505279e346fbbe7b8c8da17bf2dc974dcfb099c7927f601e74ca1b')]">
@@ -99,4 +123,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default Login;
