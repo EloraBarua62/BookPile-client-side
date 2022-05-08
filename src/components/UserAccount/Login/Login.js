@@ -42,7 +42,7 @@ const Login = () => {
     }
 
     if (loading || sending) {
-        return <Loading></Loading>
+         <Loading></Loading>
     }
 
 

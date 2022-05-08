@@ -1,77 +1,111 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logo from '../../images/logo image.png';
+import { BsGoogle } from "react-icons/bs";
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { toast, ToastContainer } from 'react-toastify';
+import Spinner from '../../Shared/Spinner/Spinner';
+import axios from 'axios';
 
-const SignUp = () => {
-
-    let errorElement;
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const [
-        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, PasswordReseterror] = useSendPasswordResetEmail(auth);
 
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
-    const handleSubmit = event => {
+    const getEmail = event => {
+        setEmail(event.target.value);
+    }
+    const getPassword = event => {
+        setPassword(event.target.value);
+    }
+    if (user || googleUser) {
+        navigate(from, { replace: true });
+    }
+    const doLogIn = async event => {
         event.preventDefault();
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        createUserWithEmailAndPassword(email, password);
-        console.log(email, password);
+        await signInWithEmailAndPassword(email, password);
+        // const { data } = await axios.post('https://sports-gear-server.herokuapp.com/login', { email });
+        // console.log('access token', data);
+        // localStorage.setItem('accessToken', data.accessToken);
+        // navigate(from, { replace: true });
     }
-    if (loading) {
-        return <div className='text-center mt-10'>loading...</div>
+    const resetPassword = async () => {
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Check your email to reset password.');
+        }
+        else {
+            toast('Please enter your Email address!');
+        }
     }
-
-    if (error) {
-        errorElement = <p className='text-red-600'>Error: {error?.message}</p>
-    }
-
-    if (user) {
-        navigate('/home');
-    }
-
     return (
-        <div className='mt-32'>
-            <h2 className='text-center text-3xl'>SignUp</h2>
-            <div className="w-full max-w-md mx-auto">
-                <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Username
-                        </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Email
-                        </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" placeholder="email" />
-                    </div>
-                    <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Password
-                        </label>
-                        <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" name="password" type="password" placeholder="****************" />
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                            <input className='w-full' type="submit" value="SignUp" />
-                        </button>
-                    </div>
-                    <div className='text-center mt-5'>
-                        <Link to='/signin' className="inline-block align-baseline font-bold  text-blue-500 hover:text-blue-800">
-                            Already have an account
-                        </Link>
-                    </div>
-                    {errorElement}
-                </form>
+        <div className='font-montserat lg:h-screen'>
+            <div className='flex flex-col justify-center items-center my-6'>
+                <div>
+                    <Link to='/'>
+                        <img className='w-24' src={logo} alt="site logo" />
+                    </Link>
+                </div>
+                <div>
+                    <h1 className='text-xl'>Sport's Gear</h1>
+                </div>
             </div>
+            {/* <p className='text-center text-2xl font-medium my-6'>Please Login</p> */}
+            <div className='flex flex-col items-center justify-center'>
+                <form onSubmit={doLogIn} className='flex flex-col space-y-5'>
+                    <input onBlur={getEmail} className='w-80 h-12 bg-gray-100 rounded pl-4 text-stone-700 focus:outline-none' type="email" name="email" id="" placeholder='Email' required />
+
+                    <input onBlur={getPassword} className='w-80 h-12 bg-gray-100 rounded pl-4 text-stone-700 focus:outline-none' type="password" name="password" id="" placeholder='Password' required />
+
+                    <input className='bg-sky-600  font-medium text-stone-100 rounded h-10 hover:cursor-pointer hover:bg-sky-700' type="submit" value="Login" />
+                </form>
+
+                <div className='flex w-80'>
+                    <div className='text-sky-600 pt-3 font-medium  mr-3 tracking-tight'>
+                        <Link to='/signup'>New to Sports Gear?</Link>
+                    </div>
+                    <div className='text-red-600 pt-3  tracking-tight'>
+                        <button onClick={resetPassword} className='font-medium'>Forgot Password?</button>
+                    </div>
+                </div>
+
+                <div className='h-6 pt-3'>
+                    <p className='font-medium' style={{ color: 'red' }}>{error?.message || googleError?.message}</p>
+                </div>
+                {
+                    loading && <Spinner></Spinner>
+                }
+                {
+                    googleLoading && <Spinner></Spinner>
+                }
+
+                <hr className='w-80 mt-3 border-[1px] ' />
+                <div onClick={() => signInWithGoogle()} className='flex items-center mt-6 hover:cursor-pointer rounded-sm bg-stone-100 mb-16 lg:mb-0'>
+                    <div className='text-sky-600  bg-stone-100 p-2 rounded-full hover:bg-sky-600 hover:text-stone-100'>
+                        <BsGoogle className='w-6 h-6 '></BsGoogle>
+                    </div>
+                    <div className='pr-2 pl-1'>
+                        <p className='text-sky-600 font-medium'>Sign in with Google</p>
+                    </div>
+                </div>
+                <ToastContainer />
+            </div>
+
         </div>
     );
 };
 
-export default SignUp;
+export default Login;

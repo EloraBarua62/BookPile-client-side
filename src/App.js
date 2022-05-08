@@ -13,6 +13,7 @@ import Signup from './components/UserAccount/Signup/Signup';
 import RequireAuth from './components/Shared/RequireAuth/RequireAuth';
 import Footer from './components/Shared/Footer/Footer';
 import AboutUs from './components/Pages/AboutUs/AboutUs';
+import Loading from './components/Shared/Loading/Loading';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
       {/* https://aqueous-forest-29360.herokuapp.com/ */}
 
       <Footer></Footer>
+      <Loading></Loading>
     </div>
   );
 }

@@ -3,9 +3,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init'
 import { TrashIcon } from '@heroicons/react/solid'
 import { toast, ToastContainer } from 'react-toastify';
+import Loading from '../../Shared/Loading/Loading';
 
 const MyItem = () => {
-    const [user] = useAuthState(auth);
+    const [user , loading] = useAuthState(auth);
     const [myBooks, setMyBooks] = useState([]);
 
 
@@ -36,6 +37,9 @@ const MyItem = () => {
                 })
         }
     }
+
+    if(loading)
+    <Loading></Loading>
 
     return (
         <div className='mx-20 my-20'>

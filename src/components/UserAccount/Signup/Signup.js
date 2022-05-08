@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleAccount from '../SocialAccount/GoogleAccount'
+import Loading from '../../Shared/Loading/Loading';
 
 const Signup = () => {
 
@@ -47,6 +48,9 @@ const Signup = () => {
 
     if (user)
         navigate('/');
+
+    if(loading)
+    <Loading></Loading>
 
 
     return (
