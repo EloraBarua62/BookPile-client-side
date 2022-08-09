@@ -2,10 +2,10 @@ import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-import img1 from '../../../images/img1.jpg';
-import img2 from '../../../images/img2.jpg';
-import img3 from '../../../images/img3.jpg';
-// import img4 from '../../../images/img4.avif';
+import img3 from '../../../images/pexels-kerem-kaplan-7770515.jpg';
+import img1 from '../../../images/pexels-rafael-cosquiere-2041540.jpg';
+import img4 from '../../../images/pexels-sergey-torbik-8263064.jpg';
+import img2 from '../../../images/pexels-aline-viana-prado-2465877.jpg';
 // import img5 from '../../../images/img5.webp';
 
 //import './Banner.css';
@@ -13,25 +13,20 @@ import img3 from '../../../images/img3.jpg';
 
 const Banner = () => {
     return (
-        <div className='w-4/5 h-1/6 mx-auto mb-52'>
-            <Carousel autoPlay infiniteLoop interval={5000} showThumbs={false}>
+        <Carousel autoPlay infiniteLoop interval={5000} showThumbs={false} showStatus={false}>
                 <div>
-                    <img className=' object-cover' src={img1} />
+                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img1} />
                 </div>
                 <div>
-                    <img className=' object-cover' src={img2} />
+                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img2} />
                 </div>
                 <div>
-                    <img className=' object-cover' src={img3} />
+                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img3} />
                 </div>
-                {/* <div>
+                <div>
                     <img className='w-full h-[600px] md:h-[600px] object-cover' src={img4} />
                 </div>
-                <div>
-                    <img className='w-full h-[600px] md:h-[600px] object-cover' src={img5} />
-                </div> */}
             </Carousel>
-        </div>
     );
 };
 

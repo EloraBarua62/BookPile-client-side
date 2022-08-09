@@ -41,7 +41,7 @@ function App() {
         }></Route>
 
         {/* <Route path='/my_items' element={<MyItem></MyItem>}></Route> */}
-        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        {/* <Route path='/blogs' element={<Blogs></Blogs>}></Route> */}
         <Route path='/aboutus' element={<AboutUs></AboutUs>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
@@ -50,7 +50,7 @@ function App() {
       {/* https://aqueous-forest-29360.herokuapp.com/ */}
 
       <Footer></Footer>
-      <Loading></Loading>
+      {/* <Loading></Loading> */}
     </div>
   );
 }

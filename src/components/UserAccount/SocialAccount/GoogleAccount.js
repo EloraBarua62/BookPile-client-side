@@ -25,8 +25,8 @@ const GoogleAccount = () => {
     }
 
     return (
-        <div>
-            <button onClick={() => signInWithGoogle()}>
+        <div className=''>
+            <button onClick={() => signInWithGoogle()} className='text-amber-500 mx-auto bg-slate-800 px-3 py-3 rounded-full'>
                 <img src={google} alt="" className='w-10 h-10 '/>
             </button>
             {errorElement}
