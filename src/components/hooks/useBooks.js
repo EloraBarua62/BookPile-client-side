@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const useBooks = () => {
-    const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([]);
 
-    useEffect(() => {
-        // const url = `https://aqueous-forest-29360.herokuapp.com/books`;
-        fetch(`https://aqueous-forest-29360.herokuapp.com/books`)
-            .then(response => response.json())
-            .then(data => setBooks(data))
-    }, [])
+  useEffect(() => {
+    // const url = `https://bookpile-server-side.onrender.com/books`;
+    fetch(`https://bookpile-server-side.onrender.com/books`)
+      .then((response) => response.json())
+      .then((data) => setBooks(data));
+  }, []);
 
-    return [books, setBooks];
-
-}
+  return [books, setBooks];
+};
 
 export default useBooks;
