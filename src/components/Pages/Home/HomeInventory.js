@@ -22,7 +22,7 @@ const HomeInventory = () => {
     return (
         <div className='w-full flex justify-center py-20'>
             <div className='w-11/12'>
-                <h1 className='text-4xl text-amber-500 font-bold uppercase text-left'>Inventory</h1>
+                <h1 className='text-4xl text-amber-500 font-bold uppercase text-center md:text-left'>Inventory</h1>
                 <div className='w-full h-1 bg-amber-500'></div>
                 <div className='pt-20 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 gap-x-5 gap-y-10'>
                     {
